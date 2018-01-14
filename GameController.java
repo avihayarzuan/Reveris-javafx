@@ -1,3 +1,7 @@
+/*
+ * Kfir Ventura Avihay Arzuan
+ */
+
 package reversiApp;
 
 import java.net.URL;
@@ -18,14 +22,15 @@ public class GameController implements Initializable {
 
   @FXML
   private HBox root;
-
+  //
   int defSize = DefineConstants.getBoardSize();
-  Color firstColor = Color.BLACK;
-  Color secondColor = Color.WHITE;
-
+  Color firstColor = DefineConstants.getFirstColor();
+  Color secondColor = DefineConstants.getSecondColor();
+  // layout objects:
   public Label turn;
   public Label player1Points;
   public Label player2Points;
+  public Button exitButton;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -41,23 +46,23 @@ public class GameController implements Initializable {
     player1Points.textProperty()
         .bind(Bindings.createStringBinding(() -> (" " + board.points1.get()), board.points1));
     player2Points.textProperty()
-    .bind(Bindings.createStringBinding(() -> (" " + board.points2.get()), board.points2));
+        .bind(Bindings.createStringBinding(() -> (" " + board.points2.get()), board.points2));
 
-    root.widthProperty().addListener((observable, oldValue, newValue) -> {
-      double boardNewWidth = newValue.doubleValue() - 120;
-      board.setPrefWidth(boardNewWidth);
-      board.draw();
-    });
     root.heightProperty().addListener((observable, oldValue, newValue) -> {
       board.setPrefHeight(newValue.doubleValue());
       board.draw();
     });
-
+    root.widthProperty().addListener((observable, oldValue, newValue) -> {
+      double boardNewWidth = newValue.doubleValue()-120;
+      board.setPrefWidth(boardNewWidth);
+      board.draw();
+    });
   }
 
-  public Button exitButton;
-
-
+  /**
+   * method called when exit button is pressed.
+   * change the stage to the mainMenu stage.
+   */
   public void handleExit() {
     try {
       Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -68,10 +73,9 @@ public class GameController implements Initializable {
       sceneStart.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
       stage.setScene(sceneStart);
       stage.show();
-      stage.close(); /// delete afterwards
+//      stage.close(); /// delete afterwards
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-
 }

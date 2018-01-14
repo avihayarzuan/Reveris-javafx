@@ -1,3 +1,8 @@
+/*
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
+
 package reversiApp;
 
 import javafx.fxml.FXMLLoader;
@@ -8,6 +13,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MenuController {
@@ -41,7 +47,8 @@ public class MenuController {
       Scene sceneSet = new Scene(set, 600, 400);
       Stage secondaryStage = new Stage();
       secondaryStage.setScene(sceneSet);
-      secondaryStage.show();
+      secondaryStage.initModality(Modality.APPLICATION_MODAL);
+      secondaryStage.showAndWait();
     } catch (Exception e) {
       e.printStackTrace();
     }

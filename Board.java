@@ -1,3 +1,7 @@
+/*
+ * Kfir Ventura Avihay Arzuan
+ */
+
 package reversiApp;
 
 import java.io.IOException;
@@ -14,6 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Board class, extends Gridpane interface use's to control the game flow
+ *
+ */
 public class Board extends GridPane {
 
   private int size;
@@ -21,20 +29,15 @@ public class Board extends GridPane {
   private DefaultLogic logic;
 
   public Color currentColor = DefineConstants.getFirstColor();
-
   public LongProperty p = new SimpleLongProperty(1);
   public LongProperty points1 = new SimpleLongProperty(2);
   public LongProperty points2 = new SimpleLongProperty(2);
 
-  public final Map<String, Cell> getCellsList() {
-    return this.boardMap;
-  }
-
-  public final int getSize() {
-    return this.size;
-  }
-
-
+  /**
+   * Constructor for the board
+   * 
+   * @param size the size of the board to initial it.
+   */
   public Board(int size) {
     this.size = size;
     initBoard();
@@ -52,13 +55,11 @@ public class Board extends GridPane {
           StackPane stack = (StackPane) clicked.getParent();
           int row = GridPane.getRowIndex(stack);
           int col = GridPane.getColumnIndex(stack);
-          System.out.println(row);
-          System.out.println(col);
           Map<String, Cell> posMap = logic.getPossibleMoves(currentColor);
-
-
+          // if the user clicked on one of the 'invisible' circles it won't go inside
           if (posMap.containsKey(Cstring.intToPoint(row, col))) {
             logic.executeOrder66(row, col);
+            // draw again the board
             this.draw();
             this.changePlayer();
             this.updateScore();
@@ -73,26 +74,52 @@ public class Board extends GridPane {
                 this.noMove();
               }
             }
-
           }
         }
       });
-
     } catch (IOException exception) {
       throw new RuntimeException(exception);
     }
   }
 
+  /**
+   * return the map of the board
+   * 
+   * @return the map of the board
+   */
+  public final Map<String, Cell> getCellsList() {
+    return this.boardMap;
+  }
+
+  /**
+   * return the size of one dimension of the board
+   * 
+   * @return int size
+   */
+  public final int getSize() {
+    return this.size;
+  }
+
+  /**
+   * change the player turns
+   */
   private void changePlayer() {
     if (currentColor == DefineConstants.getFirstColor()) {
       currentColor = DefineConstants.getSecondColor();
+      // update the label:
       p.set(2);
     } else {
       currentColor = DefineConstants.getFirstColor();
+      // update the label:
       p.set(1);
     }
   }
 
+  /**
+   * the function returns the color of the not current player
+   * 
+   * @return Color
+   */
   private Color getOtherColor() {
     if (this.currentColor == DefineConstants.getFirstColor()) {
       return DefineConstants.getSecondColor();
@@ -101,19 +128,34 @@ public class Board extends GridPane {
     }
   }
 
+  /**
+   * update the score of the players
+   */
   public void updateScore() {
     this.setFirstPlayerPoints();
     this.setSecondPlayerPoints();
   }
 
+  /**
+   * update the first player points
+   */
   public void setFirstPlayerPoints() {
     points1.set(getScore(DefineConstants.getFirstColor()));
   }
 
+  /**
+   * update the second player points
+   */
   public void setSecondPlayerPoints() {
     points2.set(getScore(DefineConstants.getSecondColor()));
   }
 
+  /**
+   * given Color, the method counts the number of disks with the same color
+   * 
+   * @param color the color to count
+   * @return the number of disks
+   */
   private int getScore(Color color) {
     int score = 0;
     for (Map.Entry<String, Cell> entry : this.boardMap.entrySet()) {
@@ -124,8 +166,14 @@ public class Board extends GridPane {
     return score;
   }
 
+  /**
+   * check who wins, or tells if there is a tie
+   * 
+   * @return String to tell the final announcement
+   */
   private String getWinner() {
-    int x = (getScore(DefineConstants.getFirstColor()) - getScore(DefineConstants.getSecondColor()));
+    int x =
+        (getScore(DefineConstants.getFirstColor()) - getScore(DefineConstants.getSecondColor()));
     if (x > 0) {
       return "Player 1 is the winner";
     } else if (x < 0) {
@@ -135,6 +183,9 @@ public class Board extends GridPane {
     }
   }
 
+  /**
+   * pops alert to screen tells the players the game is over.
+   */
   private void noOneCanMove() {
     String over = "Game-Over\n" + "no-more moves possibles\n" + "Player 1 points: "
         + getScore(DefineConstants.getFirstColor()) + "\n" + "Player 2 points: "
@@ -146,6 +197,9 @@ public class Board extends GridPane {
     alert.showAndWait();
   }
 
+  /**
+   * pops alert to screen, tell the current player he can't move
+   */
   private void noMove() {
     int turn = this.whichTurn();
     Alert alert = new Alert(AlertType.INFORMATION);
@@ -156,6 +210,10 @@ public class Board extends GridPane {
     this.changePlayer();
   }
 
+  /**
+   * method to tell which turn is it now
+   * @return 1 for first player turn, 2 for the second player
+   */
   private int whichTurn() {
     if (currentColor == DefineConstants.getFirstColor()) {
       return 1;
@@ -175,6 +233,7 @@ public class Board extends GridPane {
         boardMap.put(Cstring.intToPoint(row, col), c);
       }
     }
+    //initialize the first four disks
     boardMap.get(Cstring.intToPoint((this.size / 2), (this.size / 2)))
         .setColor(DefineConstants.getSecondColor());
     boardMap.get(Cstring.intToPoint(((this.size / 2) + 1), ((this.size / 2) + 1)))
@@ -185,6 +244,9 @@ public class Board extends GridPane {
         .setColor(DefineConstants.getFirstColor());
   }
 
+  /**
+   * simple method to draw the board
+   */
   public void draw() {
     this.getChildren().clear();
     int height = (int) this.getPrefHeight();

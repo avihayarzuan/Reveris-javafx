@@ -1,9 +1,10 @@
-package reversiApp;
-
 /*
  * Kfir Ventura
  * Avihay Arzuan
  */
+
+package reversiApp;
+
 
 public class Point {
 	/**

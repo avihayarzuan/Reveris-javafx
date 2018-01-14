@@ -1,17 +1,25 @@
-package reversiApp;
-
 /*
  * Kfir Ventura
  * Avihay Arzuan
  */
 
-///#include "CellMap.h"
+//========================================================================
+// This conversion was produced by the Free Edition of
+// C++ to Java Converter courtesy of Tangible Software Solutions.
+//========================================================================
 
+package reversiApp;
+
+/**
+ * class generates enum values.
+ * genereated from converter
+ * copyright up here
+ *
+ */
 public enum Direction {
 	stay(0), up(1), down(-1);
 
 	public static final int SIZE = java.lang.Integer.SIZE;
-
 	private int intValue;
 	private static java.util.HashMap<Integer, Direction> mappings;
 

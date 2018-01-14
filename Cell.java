@@ -1,3 +1,6 @@
+/*
+ * Kfir Ventura Avihay Arzuan
+ */
 package reversiApp;
 
 import javafx.scene.layout.GridPane;
@@ -7,15 +10,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Kfir Ventura Avihay Arzuan
+ * the class represents properties of every cell in the board
  */
-
 public class Cell {
   private Point point;
   private Color color;
   private GridPane grid;
 
-
+  /**
+   * Constructor.
+   * 
+   * @param grid the 'style' of gui of the cell
+   */
   public Cell(GridPane grid) {
     this.point = new Point(0, 0);
     this.color = DefineConstants.getEmptyColor();
@@ -25,9 +31,9 @@ public class Cell {
   /**
    * Constructor.
    * 
+   * @param grid the 'style' of gui of the cell
    * @param row - index of the row.
    * @param col - index of the column.
-   * @param color - cell's color. by default, will be EMPTY.
    */
   public Cell(GridPane grid, int row, int col) {
     this.point = new Point(row, col);
@@ -35,6 +41,14 @@ public class Cell {
     this.grid = grid;
   }
 
+  /**
+   * Constructor.
+   * 
+   * @param grid the 'style' of gui of the cell
+   * @param row - index of the row.
+   * @param col - index of the column.
+   * @param color - cell's color. by default, will be EMPTY.
+   */
   public Cell(GridPane grid, int row, int col, Color color) {
     this.point = new Point(row, col);
     this.color = color;
@@ -44,8 +58,8 @@ public class Cell {
   /**
    * Constructor.
    * 
+   * @param grid the 'style' of gui of the cell
    * @param point - coordinate of the cell (i.e cell[i,j])
-   * @param color - cell's color may be BLACK, WHITE or EMPTY.
    */
   public Cell(GridPane grid, Point point) {
     this.point = new Point(point);
@@ -53,38 +67,37 @@ public class Cell {
     this.grid = grid;
   }
 
+  /**
+   * Constructor.
+   * 
+   * @param grid the 'style' of gui of the cell
+   * @param point - coordinate of the cell (i.e cell[i,j])
+   * @param color - cell's color. by default, will be EMPTY.
+   */
   public Cell(GridPane grid, Point point, Color color) {
     this.point = new Point(point);
     this.color = color;
     this.grid = grid;
   }
 
+  /**
+   * draw the cell as rectangle and a circle on it
+   * 
+   * @param cellWidth
+   * @param cellHeight
+   */
   public void draw(int cellWidth, int cellHeight) {
     Rectangle rec = new Rectangle(cellWidth, cellHeight);
     rec.setStroke(Color.BLACK);
     rec.setFill(DefineConstants.getEmptyColor());
 
     StackPane stack = new StackPane();
-    Circle disk = new Circle((cellWidth / 3), color);
+    Circle disk = new Circle((cellHeight / 3), color);
     stack.getChildren().addAll(rec, disk);
 
     grid.getChildren().remove(rec);
     grid.add(stack, getCol(), getRow());
   }
-
-
-
-  /**
-   * @return cell's coordinate.
-   */
-
-  /**
-   * @return true if cell's color is WHITE. otherwise, return false.
-   */
-
-  /**
-   * @return true if cell's color is BLACK. otherwise, return false.
-   */
 
   /**
    * @return cell's row index.
@@ -115,8 +128,6 @@ public class Cell {
     return (this.color == DefineConstants.getEmptyColor());
   }
 
-
-
   /**
    * Getter.
    * 
@@ -135,9 +146,15 @@ public class Cell {
     this.color = color;
   }
 
+  /**
+   * Getter.
+   * 
+   * @return cell's color.
+   */
   public Color getColor() {
     return this.color;
   }
+
   /**
    * Getter.
    * 
@@ -147,10 +164,13 @@ public class Cell {
     return this.point.toString();
   }
 
+  /**
+   * copy construcor of the cell class
+   * 
+   * @param c Cell object
+   */
   public void copyFrom(Cell c) {
     this.point = new Point(c.getRow(), c.getCol());
     this.color = c.getPlayer();
   }
-
-
 }

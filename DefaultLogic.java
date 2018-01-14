@@ -1,3 +1,8 @@
+/*
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
+
 package reversiApp;
 
 import java.util.HashMap;
@@ -5,9 +10,6 @@ import java.util.Map;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-/*
- * Kfir Ventura Avihay Arzuan
- */
 
 public class DefaultLogic {
   /**
