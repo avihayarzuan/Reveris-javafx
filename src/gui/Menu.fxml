@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuController">
+   <children>
+      <BorderPane prefHeight="18.0" prefWidth="600.0">
+         <top>
+            <MenuBar fx:id="menuBar" prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
+              <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#handleQuitButton" text="Quit" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Settings">
+                  <items>
+                    <MenuItem fx:id="changeItem" mnemonicParsing="false" onAction="#handleSettingsButton" text="Change" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   <GridPane layoutX="-6.0" layoutY="45.0" prefHeight="355.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+	</columnConstraints>
+	<rowConstraints>
+<RowConstraints maxHeight="62.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButton" prefHeight="39.0" prefWidth="203.0" text="Start Game" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			<GridPane.margin>
+				<Insets top="20.0" />
+			</GridPane.margin>
+		</Button>
+		<Button fx:id="quitButton" layoutX="210.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleQuitButton" prefHeight="39.0" prefWidth="196.0" text="Quit" GridPane.columnIndex="1" GridPane.rowIndex="5">
+			<GridPane.margin>
+				<Insets bottom="30.0" />
+			</GridPane.margin>
+		</Button>
+		<Label prefHeight="61.0" prefWidth="200.0" text="   Reversi" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			<font>
+				<Font name="Arial Black" size="31.0" />
+			</font>
+		</Label>
+	</children>
+</GridPane>
+   </children>
+</AnchorPane>
