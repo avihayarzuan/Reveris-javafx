@@ -92,7 +92,8 @@ public class Cell {
     rec.setFill(DefineConstants.getEmptyColor());
 
     StackPane stack = new StackPane();
-    Circle disk = new Circle((cellHeight / 3), color);
+    int min = Math.min(cellWidth, cellHeight);
+    Circle disk = new Circle((min / 3), color);
     stack.getChildren().addAll(rec, disk);
 
     grid.getChildren().remove(rec);

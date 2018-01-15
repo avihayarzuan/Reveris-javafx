@@ -17,10 +17,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MenuController {
-
+  //button members
   public Button startButton;
   public Button settingButton;
   public Button quitButton;
+  //menu members
   public MenuItem quitMenu;
   public Menu fileMenu;
   public MenuBar menuBar;
