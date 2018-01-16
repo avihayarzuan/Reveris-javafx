@@ -3,6 +3,7 @@
  */
 package reversiApp;
 
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -94,6 +95,14 @@ public class Cell {
     StackPane stack = new StackPane();
     int min = Math.min(cellWidth, cellHeight);
     Circle disk = new Circle((min / 3), color);
+
+    if (!(this.color == DefineConstants.getEmptyColor())) {
+      DropShadow ds = new DropShadow();
+      ds.setOffsetX(-min / 6);
+      ds.setOffsetY(min / 6);
+      disk.setEffect(ds);
+    }
+
     stack.getChildren().addAll(rec, disk);
 
     grid.getChildren().remove(rec);

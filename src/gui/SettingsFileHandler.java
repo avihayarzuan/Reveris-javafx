@@ -17,6 +17,13 @@ public class SettingsFileHandler {
   private static final String P2_COLOR = "player2_color:";
   private static final String B_SIZE = "board_size:";
 
+  
+  /**
+   * static function to write to file requested properties
+   * @param size the board size
+   * @param first the first player color
+   * @param second the second player color
+   */
   public static void toFile(int size, Color first, Color second) {
     PrintWriter writer;
     try {
@@ -31,6 +38,12 @@ public class SettingsFileHandler {
     }
   }
 
+  /**
+   * the function reads from file the properties 
+   * for board size and players colors
+   * @param fileReader
+   * @return
+   */
   public static String[] fromReader(Reader fileReader) {
     // Buffer line reader
     BufferedReader lineReader = new BufferedReader(fileReader);

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import reversiApp.DefineConstants;
 
@@ -25,6 +26,7 @@ public class GameController implements Initializable {
   
   // layout objects:
   public Label turn;
+  public Circle circleTurn;
   public Label player1Points;
   public Label player2Points;
   public Button exitButton;
@@ -44,6 +46,7 @@ public class GameController implements Initializable {
         .bind(Bindings.createStringBinding(() -> (" " + board.points1.get()), board.points1));
     player2Points.textProperty()
         .bind(Bindings.createStringBinding(() -> (" " + board.points2.get()), board.points2));
+    
 
     //add listeners to height and width of the screen
     root.heightProperty().addListener((observable, oldValue, newValue) -> {
@@ -56,7 +59,8 @@ public class GameController implements Initializable {
       board.draw();
     });
   }
-
+  
+  
   /**
    * method called when exit button is pressed.
    * change the stage to the mainMenu stage.

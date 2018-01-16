@@ -64,7 +64,9 @@ public class MenuController {
   }
 
   /**
-   * 
+   * method to handle pressing the settings tab
+   * it opens a new window and stop the main window to
+   * get changes until the window is closed
    */
   public void handleSettingsButton() {
     try {
@@ -77,9 +79,12 @@ public class MenuController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 
+  /**
+   * the method activates when the quit button is pressed
+   * it closes the window
+   */
   public void handleQuitButton() {
     Stage stage = (Stage) quitButton.getScene().getWindow();
     stage.close();

@@ -1,0 +1,4 @@
+we weren't using the git repository as usual
+we were uploading strait from the browser
+that's because we were working from windows
+the git commits are in separated jpg in this folder

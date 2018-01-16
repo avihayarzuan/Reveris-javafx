@@ -36,6 +36,8 @@ public class Board extends GridPane {
   public LongProperty p = new SimpleLongProperty(1);
   public LongProperty points1 = new SimpleLongProperty(2);
   public LongProperty points2 = new SimpleLongProperty(2);
+  public Color c = currentColor;
+  
 
   /**
    * Constructor for the board
